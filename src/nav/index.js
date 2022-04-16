@@ -1,5 +1,6 @@
 import { pagePath, routes } from "../Routes/path";
 import AuthProtectNav from "./NavAuth";
+import HouseIcon from '@mui/icons-material/House';
 import HomeIcon from '@mui/icons-material/Home';
 import BedroomParentIcon from '@mui/icons-material/BedroomParent';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
@@ -19,7 +20,7 @@ const Navconfig = [
       },
       {
         title: "Rooms",
-        href: pagePath.app.jobs,
+        href: pagePath.app.rooms,
         isAdminPage: false,
         icon: <BedroomParentIcon/>
       },
@@ -47,18 +48,18 @@ const Navconfig = [
   {
     guard: AuthProtectNav,
     isAdminPage: false,
-    title: "Employeer",
+    title: "User",
     navs: [
       {
         title: "My Rooms",
-        href: routes.employer,
+        href: routes.rooms,
         isAdminPage: false,
-        icon: <PeopleAltIcon/>
+        icon: <HouseIcon/>
       },
       {
-        title: "Applications",
+        title: "Room Applications",
         isAdminPage: false,
-        href: pagePath.rooms,
+        href: routes.applications,
         icon: <PeopleAltIcon/>
       },
     ],

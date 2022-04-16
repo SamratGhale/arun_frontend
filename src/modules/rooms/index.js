@@ -1,10 +1,10 @@
 import Typography from '@mui/material/Typography';
 
-export default function Home() {
+export default function Room() {
     return (
         <div>
             <Typography variant="h2" >
-                Home
+               Rooms
             </Typography>
         </div>
     )

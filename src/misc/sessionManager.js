@@ -1,3 +1,4 @@
+import { pagePath } from "../Routes/path";
 export function saveUser(userData) {
     localStorage.setItem('currentUser', JSON.stringify(userData)); 
 }
@@ -24,9 +25,7 @@ export function getUser() {
     }
 }
 
-/*
 export function logOutUser() {
     localStorage.clear();
     window.location = pagePath.app.login;
 }
-*/

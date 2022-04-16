@@ -7,6 +7,8 @@ export const routes = {
     root: "/",
     app:  "/app",
     admin:"/admin",
+    rooms:"/rooms",
+    applications:"/applications",
     user: "/user",
     error:"/error",
 };
@@ -14,7 +16,7 @@ export const routes = {
 export const pagePath = {
     app: {
         login:           merge_path(routes.app, "/login"),
-        signup:           merge_path(routes.app, "/signup"),
+        signup:          merge_path(routes.app, "/signup"),
         rooms :          merge_path(routes.app, "/rooms"),
         waitForApproval: merge_path(routes.app, "/waitforapproval"),
     },

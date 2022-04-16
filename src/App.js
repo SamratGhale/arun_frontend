@@ -1,4 +1,3 @@
-import './App.css';
 import { Router } from 'react-router-dom'
 import routes, { renderRoutes } from "./Routes";
 import { createBrowserHistory } from 'history';
