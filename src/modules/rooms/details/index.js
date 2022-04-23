@@ -222,6 +222,7 @@ return (
                           display: 'block',
                           overflow: 'hidden',
                           width: '100%',
+                          height:450,
                         }}
                         src={ROOM_IMAGES + `/${item.room.room_id}/` + step}
                       />
