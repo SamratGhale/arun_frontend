@@ -43,7 +43,6 @@ export const renderRoutes = (routes = []) => {
           const Guard = route.guard || DefaultAuth;
           const Layout = route.layout || Fragment;
           const isAdminPage = route.isAdminPage;
-          console.log(routes)
 
           return (
             <RouteProgress

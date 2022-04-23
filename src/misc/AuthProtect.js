@@ -9,9 +9,7 @@ AuthProtect.propTypes = {
 };
 function AuthProtect({ children, isAdminPage}) {
     const user = getUser(); //gets the user data from the local storage
-    console.log(user)
     if (!user) {
-        console.log("okay")
         return <Redirect to={pagePath.app.login} />
     }
 

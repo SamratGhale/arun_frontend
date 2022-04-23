@@ -29,7 +29,6 @@ export default function SignUp() {
             enqueueSnackbar('signup successful', {variant:"success"})
         }catch(err){
             enqueueSnackbar(err.response.data.message, {variant:"error"})
-            console.log(err.response.data.message)
         }
     };
 

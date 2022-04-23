@@ -6,6 +6,7 @@ import Room from '../modules/rooms'
 import Home from "../views/home"
 import { pagePath, routes } from './path'
 import Users from "../modules/users"
+import RoomDetails from "../modules/rooms/details"
 const Routes = {
     path: '*',
     layout: DashboardLayout,
@@ -48,6 +49,16 @@ const Routes = {
             heading: "Users",
             component: (props) => {
                 return <Users {...props} />
+            }
+        },
+        {
+            exact: true,
+            path: pagePath.app.roomDetails,
+            isAdminPage: false,
+            guard: AuthProtect,
+            heading: "Room Details",
+            component: (props) => {
+                return <RoomDetails {...props} />
             }
         },
     ]
