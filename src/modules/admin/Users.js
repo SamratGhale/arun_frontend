@@ -11,9 +11,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllRoomsAsync } from '../rooms/context';
 import { Typography } from '@mui/material';
 import { archiveRoomAsync, availableRoomAsync } from '../rooms/context';
+import {  archiveUserAsync, getALlusersAsync, registerUserAsync } from '../users/context';
 
 function escapeRegExp(value) {
     return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
@@ -71,21 +71,20 @@ QuickSearchToolbar.propTypes = {
     value: PropTypes.string.isRequired,
 };
 
-const VISIBLE_FIELDS = ['name', 'rating', 'country', 'dateCreated', 'isAdmin'];
 
-export default function QuickFilteringGrid() {
+export default function Users() {
 
 
     const [list, setList] = useState([])
-    const rooms = useSelector((state) => state.room.rooms);
+    const users = useSelector((state) => state.user.list)
 
     React.useEffect(() => {
-        dispatch(getAllRoomsAsync());
+        dispatch(getALlusersAsync());
     }, [])
 
     useEffect(() => {
-        setList(rooms);
-    }, [rooms])
+        setList(users);
+    }, [users])
 
     const [searchText, setSearchText] = React.useState('');
     const dispatch = useDispatch();
@@ -93,41 +92,32 @@ export default function QuickFilteringGrid() {
 
     const columns = [
         {
-            field: 'room_id',
-            headerName: "Room Id"
+            field: 'user_id',
+            headerName: "User Id"
         },
         {
-            field: 'location',
-            headerName: "Location",
-            width: 150
+            field: 'email',
+            headerName: "Email",
+            width: 200,
         },
         {
-            field: 'price',
-            headerName: "Price (Rs)",
+            field: 'username',
+            headerName: "User Name",
             width: 150,
-            type: 'number',
-            valueFormatter: (params) => {
-                if (params.value == null) {
-                  return '';
-                }
-  
-                const valueFormatted = Number(params.value ).toLocaleString();
-                return `Rs. ${valueFormatted}`;
-              },
         },
         {
-            field: 'is_available',
-            headerName: "Available ? ",
+            field: 'is_registered',
+            headerName: "Registered? ",
             width: 150,
             renderCell: (cell) => {
                 return (
                         <Button
                         onClick={async()=>{
                             try{
-                            await dispatch(await availableRoomAsync(cell.id));
-                                enqueueSnackbar(`Room id ${cell.id} ${cell.value==0 ? '':'un'}archived`, {variant: 'success'});
+                            await dispatch(await registerUserAsync(cell.id));
+                                enqueueSnackbar(`User id ${cell.id} ${cell.value==0 ? '':'un'}archived`, {variant: 'success'});
                             }catch(err){
-                                enqueueSnackbar(`failed to ${cell.value==0 ? '':'un'}archived room id ${cell.value}`, {variant: 'error'});
+                                enqueueSnackbar(`failed to ${cell.value==0 ? '':'un'}archived user id ${cell.value}`, {variant: 'error'});
                             }
                         }}
                         >
@@ -146,8 +136,8 @@ export default function QuickFilteringGrid() {
                         <Button 
                         onClick={async()=>{
                             try{
-                            await dispatch(await archiveRoomAsync(cell.id));
-                                enqueueSnackbar(`Room id ${cell.id} ${cell.value==0 ? '':'un'}archived`, {variant: 'success'});
+                            await dispatch(await archiveUserAsync(cell.id));
+                                enqueueSnackbar(`User id ${cell.id} ${cell.value==0 ? '':'un'}archived`, {variant: 'success'});
                             }catch(err){
                                 enqueueSnackbar(`failed to ${cell.value==0 ? '':'un'}archived room id ${cell.value}`, {variant: 'error'});
                             }
@@ -159,13 +149,14 @@ export default function QuickFilteringGrid() {
             }
         },
         {
-            field: 'username',
-            headerName: "Seller",
-            width: 150
-        },
-        {
             field: 'app_count',
             headerName: "No. Applications",
+            width: 150,
+            type: 'number',
+        },
+        {
+            field: 'room_count',
+            headerName: "No. Room",
             width: 150,
             type: 'number',
         },
@@ -193,7 +184,7 @@ export default function QuickFilteringGrid() {
     const requestSearch = (searchValue) => {
         setSearchText(searchValue);
         const searchRegex = new RegExp(escapeRegExp(searchValue), 'i');
-        const filteredRows = rooms.filter((row) => {
+        const filteredRows = users.filter((row) => {
             return Object.keys(row).some((field) => {
                 return searchRegex.test(row[field].toString());
             });
@@ -213,7 +204,7 @@ export default function QuickFilteringGrid() {
                     rows={list}
                     columns={columns}
                     getRowId={(r) => {
-                        return r.room_id;
+                        return r.user_id;
                     }}
                     componentsProps={{
                         toolbar: {

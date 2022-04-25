@@ -5,7 +5,7 @@ import DashboardLayout from "../misc/Layout"
 import Room from '../modules/rooms'
 import Home from "../views/home"
 import { pagePath, routes } from './path'
-import Users from "../modules/users"
+import Users from "../modules/admin/Users"
 import RoomDetails from "../modules/rooms/details"
 import Profile from "../views/profile"
 import Applications from "../modules/applications"

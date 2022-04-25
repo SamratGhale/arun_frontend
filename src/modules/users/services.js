@@ -109,3 +109,35 @@ export async function changeProfilePic(data) {
             })
     });
 }
+
+export async function archiveUser(id) {
+    return new Promise((resolve, reject) => {
+        axios.delete(USER + `/${id}`, {
+            headers: {
+                'access_token': accessToken
+            }
+        })
+            .then((res) => {
+                resolve({ sucess: true, status: 200, data: res.data })
+            })
+            .catch((err) => {
+                reject(err);
+            })
+    });
+}
+
+export async function registerUser(id) {
+    return new Promise((resolve, reject) => {
+        axios.put(USER + `/approve/${id}`,{}, {
+            headers: {
+                'access_token': accessToken
+            }
+        })
+            .then((res) => {
+                resolve({ sucess: true, status: 200, data: res.data })
+            })
+            .catch((err) => {
+                reject(err);
+            })
+    });
+}

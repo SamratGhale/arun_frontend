@@ -89,6 +89,26 @@ export const changeProfileAsync= (data) => async (dispatch) => {
     }
 }
 
+export const archiveUserAsync= (id) => async (dispatch) => {
+    try {
+        const res = await Service.archiveUser(id);
+        dispatch(getALlusersAsync());
+        return res;
+    }
+    catch (err) { throw err;
+    }
+}
+
+export const registerUserAsync= (id) => async (dispatch) => {
+    try {
+        const res = await Service.registerUser(id);
+        dispatch(getALlusersAsync());
+        return res;
+    }
+    catch (err) { throw err;
+    }
+}
+
 export const { login, getAllUsers } = usersSlice.actions;
 export default usersSlice.reducer;
 

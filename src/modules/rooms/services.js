@@ -116,3 +116,16 @@ export async function availableRoom(id) {
     throw err;
   }
 }
+export async function archiveApplication(id) {
+  try{
+    const res = await axios.delete(APPLICATION+'/'+id,{
+      headers:{
+        'access_token': access_token
+      }
+    })
+    return res;
+  }catch(err){
+    throw err;
+  }
+}
+   

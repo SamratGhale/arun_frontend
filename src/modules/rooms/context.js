@@ -93,6 +93,17 @@ export const getMyApplicationsAsync=()=>async(dispatch)=>{
  }
 }
 
+export const archiveApplicationAsync=(id)=>async(dispatch)=>{
+ try{
+   const res = await Service.archiveApplication(id);
+   dispatch(getMyApplicationsAsync());
+   return res;
+ } 
+ catch(err){
+   throw err;
+ }
+}
+
 
 
 export default roomSlice.reducer;
