@@ -74,3 +74,45 @@ export async function approveApplication(id) {
     throw err;
   }
 }
+
+export async function archiveRoom(id) {
+  try{
+    const res = await axios.delete(ROOM+'/'+id,{
+      headers:{
+        'access_token': access_token
+      }
+    })
+    return res;
+  } 
+  catch(err){
+    throw err;
+  }
+}
+
+export async function getMyApplications() {
+  try{
+    const res = await axios.get(ROOM+'/applications',{
+      headers:{
+        'access_token': access_token
+      }
+    })
+    return res;
+  } 
+  catch(err){
+    throw err;
+  }
+}
+
+export async function availableRoom(id) {
+  try{
+    const res = await axios.put(ROOM+'/available/'+id,{},{
+      headers:{
+        'access_token': access_token
+      }
+    })
+    return res;
+  } 
+  catch(err){
+    throw err;
+  }
+}

@@ -1,5 +1,6 @@
 import { pagePath, routes } from "../Routes/path";
 import AuthProtectNav from "./NavAuth";
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import HouseIcon from '@mui/icons-material/House';
 import HomeIcon from '@mui/icons-material/Home';
 import BedroomParentIcon from '@mui/icons-material/BedroomParent';
@@ -24,6 +25,12 @@ const Navconfig = [
         isAdminPage: false,
         icon: <BedroomParentIcon/>
       },
+      {
+        title: "Profile",
+        href: pagePath.app.profile,
+        isAdminPage: false,
+        icon: <AccountBoxIcon/>
+      },
     ],
   },
   {
@@ -32,8 +39,8 @@ const Navconfig = [
     title: "Admin",
     navs: [
       {
-        title: "Admin",
-        href: routes.admin,
+        title: "Rooms",
+        href: pagePath.admin.rooms,
         isAdminPage: true,
         icon: <PeopleAltIcon/>
       },

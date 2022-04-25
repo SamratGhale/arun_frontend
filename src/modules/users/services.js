@@ -49,3 +49,63 @@ export async function signup(data) {
             })
     });
 }
+
+export async function refreshInfo() {
+    return new Promise((resolve, reject) => {
+        axios.get(USER + `/auth/${accessToken}`)
+            .then((res) => {
+                resolve({ sucess: true, status: 200, data: res.data })
+            })
+            .catch((err) => {
+                reject(err);
+            })
+    });
+}
+
+export async function updateUser(id, data) {
+    return new Promise((resolve, reject) => {
+        axios.post(USER + `/${id}/update`, data, {
+            headers: {
+                'access_token': accessToken
+            }
+        })
+            .then((res) => {
+                resolve({ sucess: true, status: 200, data: res.data })
+            })
+            .catch((err) => {
+                reject(err);
+            })
+    });
+}
+
+export async function getAllusers() {
+    return new Promise((resolve, reject) => {
+        axios.get(USER, {
+            headers: {
+                'access_token': accessToken
+            }
+        })
+            .then((res) => {
+                resolve({ sucess: true, status: 200, data: res.data })
+            })
+            .catch((err) => {
+                reject(err);
+            })
+    });
+}
+
+export async function changeProfilePic(data) {
+    return new Promise((resolve, reject) => {
+        axios.post(USER + `/changeprofile`, data, {
+            headers: {
+                'access_token': accessToken
+            }
+        })
+            .then((res) => {
+                resolve({ sucess: true, status: 200, data: res.data })
+            })
+            .catch((err) => {
+                reject(err);
+            })
+    });
+}

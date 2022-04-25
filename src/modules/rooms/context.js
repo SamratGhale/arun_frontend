@@ -13,7 +13,7 @@ export const roomSlice = createSlice({
       state.rooms = data.payload;
     },
     setApplications: (state, data) => {
-      state.rooms = data.payload;
+      state.applications = data.payload;
     }
   }
 })
@@ -61,6 +61,39 @@ export const approveApplicationAsync=(id)=>async(dispatch)=>{
  }
 }
 
+export const archiveRoomAsync=(id)=>async(dispatch)=>{
+ try{
+   const res = await Service.archiveRoom(id);
+   dispatch(getAllRoomsAsync());
+   return res;
+ } 
+ catch(err){
+   throw err;
+ }
+}
+
+export const availableRoomAsync=(id)=>async(dispatch)=>{
+ try{
+   const res = await Service.availableRoom(id);
+   dispatch(getAllRoomsAsync());
+   return res;
+ } 
+ catch(err){
+   throw err;
+ }
+}
+export const getMyApplicationsAsync=()=>async(dispatch)=>{
+ try{
+   const res = await Service.getMyApplications();
+   dispatch(setApplications(res.data));
+   return res;
+ } 
+ catch(err){
+   throw err;
+ }
+}
+
+
 
 export default roomSlice.reducer;
-export const {setRooms}  = roomSlice.actions;
+export const {setRooms, setApplications}  = roomSlice.actions;

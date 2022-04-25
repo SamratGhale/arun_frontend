@@ -50,6 +50,7 @@ function QuickSearchToolbar({ rooms, setCurrRooms }) {
     return (
         <div >
             <TextField
+                className='col-lg-4'
                 variant="standard"
                 value={searchText}
                 onChange={(e) => requestSearch(e.target.value)}
@@ -213,13 +214,13 @@ export default function Room() {
 
     return (
         <div >
-            <Grid container >
+            <Grid container spacing={28}>
                 <Grid item >
                     <Typography variant="h2">
                         Rooms
                     </Typography>
                 </Grid>
-                <Grid item className="col-lg-3">
+                <Grid item>
                     <QuickSearchToolbar setCurrRooms={setList} rooms={rooms} />
                 </Grid>
             </Grid>

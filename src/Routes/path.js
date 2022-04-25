@@ -19,6 +19,7 @@ export const pagePath = {
         signup:          merge_path(routes.app, "/signup"),
         rooms :          merge_path(routes.app, "/rooms"),
         roomDetails :    merge_path(routes.app, "/rooms/:id"),
+        profile     :    merge_path(routes.app, "/profile"),
         waitForApproval: merge_path(routes.app, "/waitforapproval"),
     },
     user: {

@@ -1,12 +1,14 @@
 import React from "react"
 import AuthProtect from "../misc/AuthProtect"
-import Admin from "../modules/admin"
+import Admin from "../modules/admin/Rooms"
 import DashboardLayout from "../misc/Layout"
 import Room from '../modules/rooms'
 import Home from "../views/home"
 import { pagePath, routes } from './path'
 import Users from "../modules/users"
 import RoomDetails from "../modules/rooms/details"
+import Profile from "../views/profile"
+import Applications from "../modules/applications"
 const Routes = {
     path: '*',
     layout: DashboardLayout,
@@ -33,10 +35,10 @@ const Routes = {
         },
         {
             exact: true,
-            path: routes.admin,
+            path: pagePath.admin.rooms,
             isAdminPage: true,
             guard: AuthProtect,
-            heading: "Admin",
+            heading: "Admin Rooms",
             component: (props) => {
                 return <Admin {...props} />
             }
@@ -59,6 +61,26 @@ const Routes = {
             heading: "Room Details",
             component: (props) => {
                 return <RoomDetails {...props} />
+            }
+        },
+        {
+            exact: true,
+            path: pagePath.app.profile,
+            isAdminPage: false,
+            guard: AuthProtect,
+            heading: "Profile",
+            component: (props) => {
+                return <Profile {...props} />
+            }
+        },
+        {
+            exact: true,
+            path: routes.applications,
+            isAdminPage: false,
+            guard: AuthProtect,
+            heading: "Applications",
+            component: (props) => {
+                return <Applications{...props} />
             }
         },
     ]

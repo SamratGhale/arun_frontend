@@ -7,4 +7,5 @@ module.exports = {
     APPLICATION: base_URL + '/application',
     APPLY: base_URL + '/Apply',
     ROOM_IMAGES: server_URL + '/room_images',
+    PROFILE_PIC: server_URL+'/profile_pics/'
 }
